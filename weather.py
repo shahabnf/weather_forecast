@@ -31,7 +31,13 @@ print(api_key)
 complete_url = base_url + "q=" + city_name + "&appid=" + api_key
 
 # Get method of request module (return response)
-response = requests.get(complete_url)
+api_response = requests.get(complete_url)
 
 # Check the response value
-print(response)
+print(api_response)
+
+# convert response into json format 
+result_in_json = api_response.json()
+
+# Check the json response value
+print(result_in_json)
