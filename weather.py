@@ -5,9 +5,8 @@ import requests
 # city name
 city_name = ""
 
-# city name
-api_key = "ABCD"
-
+# Read API key from "api_key.txt" file
+api_key = open('api_key.txt','r').read()
 
 # base_url variable to store url (ver 2.5)
 base_url = "https://api.openweathermap.org/data/2.5/weather?"
@@ -19,13 +18,13 @@ print("Welcome to weather forcast")
 city_name = input("Please enter the city name: ")
 
 # Check the city name input
-print(city_name)
+print("Checking the weather forecast for",city_name)
 
 # Add API key
-api_key = input("Please enter the API key: ")
+# api_key = input("Please enter the API key: ")
 
 # Check the API input
-print(api_key)
+# print(api_key)
 
 # Complete API url address with variables
 complete_url = base_url + "q=" + city_name + "&appid=" + api_key
@@ -34,13 +33,13 @@ complete_url = base_url + "q=" + city_name + "&appid=" + api_key
 api_response = requests.get(complete_url)
 
 # Check the response value
-print(api_response)
+# print(api_response)
 
 # convert response into json format 
 result_in_json = api_response.json()
 
 # Check the json response value
-print(result_in_json)
+# print(result_in_json)
 
 # Check if the response contains valid data
 if result_in_json["cod"] == 200:
@@ -70,7 +69,7 @@ if result_in_json["cod"] == 200:
     weather_country = api_sys_dt["country"]
 
     # Print the result in separate lines
-    print(" Temperature (in Celsius) = " +
+    print("\n Temperature (in Celsius) = " +
                     str(current_temperature) +
           "\n Feels like (in Celsius) = " +
                     str(current_feels_like) +
@@ -79,7 +78,7 @@ if result_in_json["cod"] == 200:
           "\n Description = " +
                     str(weather_description) +
           "\n Country = " +
-                    str(weather_country))
+                    str(weather_country),"\n")
     
 elif result_in_json["cod"] == 401:
     print("Incorrect API key! Please check the API key value.")
