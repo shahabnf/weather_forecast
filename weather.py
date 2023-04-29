@@ -1,13 +1,8 @@
 import requests
 
 
-# Default variables
-# city name
-city_name = ""
-
-# city name
-api_key = "ABCD"
-
+# Read API key from "api_key.txt" file
+api_key = open('api_key.txt','r').read()
 
 # base_url variable to store url (ver 2.5)
 base_url = "https://api.openweathermap.org/data/2.5/weather?"
@@ -19,28 +14,16 @@ print("Welcome to weather forcast")
 city_name = input("Please enter the city name: ")
 
 # Check the city name input
-print(city_name)
-
-# Add API key
-api_key = input("Please enter the API key: ")
-
-# Check the API input
-print(api_key)
+print("\nChecking the current weather of",city_name,"\n")
 
 # Complete API url address with variables
-complete_url = base_url + "q=" + city_name + "&appid=" + api_key
+complete_url = base_url + "q=" + city_name + "&appid=" + api_key + "&units=metric"
 
 # Get method of request module (return response)
 api_response = requests.get(complete_url)
 
-# Check the response value
-print(api_response)
-
 # convert response into json format 
 result_in_json = api_response.json()
-
-# Check the json response value
-print(result_in_json)
 
 # Check if the response contains valid data
 if result_in_json["cod"] == 200:
@@ -85,5 +68,9 @@ elif result_in_json["cod"] == 401:
     print("Incorrect API key! Please check the API key value.")
 elif result_in_json["cod"] == "404":
     print("City Not Found!")
+elif result_in_json["cod"] == "400":
+    print("City entry cannot accept empty value!")
 else:
     print("Something goes wrong!")
+
+print("\n")
