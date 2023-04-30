@@ -14,7 +14,7 @@ print("Welcome to weather forcast")
 city_name = input("Please enter the city name: ")
 
 # Check the city name input
-print("\nChecking the current weather of",city_name,"\n")
+print("\nChecking the current weather of",city_name.capitalize(),"\n")
 
 # Complete API url address with variables
 complete_url = base_url + "q=" + city_name + "&appid=" + api_key + "&units=metric"
