@@ -34,7 +34,7 @@ if result_in_json["cod"] == 200:
     # Store the value of "temp" key
     current_temperature = api_main_dt["temp"]
   
-    # Store the value of "temp" key
+    # Store the value of "feels_like" key
     current_feels_like = api_main_dt["feels_like"]
 
     # Store the value of "humidity" key of y
@@ -71,6 +71,6 @@ elif result_in_json["cod"] == "404":
 elif result_in_json["cod"] == "400":
     print("City entry cannot accept empty value!")
 else:
-    print("Something goes wrong!")
+    print("Something went wrong!")
 
 print("\n")
