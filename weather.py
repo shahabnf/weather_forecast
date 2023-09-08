@@ -1,6 +1,19 @@
 import requests
 
 
+def capitalize_city_name(input_str):
+    # Split the input string into words
+    words = input_str.split()
+
+    # Capitalize the first letter of each word
+    capitalized_words = [word.capitalize() for word in words]
+
+    # Join the capitalized words into a single string
+    result_str = ' '.join(capitalized_words)
+
+    return result_str
+
+
 # Read API key from "api_key.txt" file
 api_key = open('api_key.txt','r').read()
 
@@ -14,7 +27,7 @@ print("Welcome to weather forcast")
 city_name = input("Please enter the city name: ")
 
 # Check the city name input
-print("\nChecking the current weather of",city_name.capitalize(),"\n")
+print("\nChecking the current weather of",capitalize_city_name(city_name),"\n")
 
 # Complete API url address with variables
 complete_url = base_url + "q=" + city_name + "&appid=" + api_key + "&units=metric"
